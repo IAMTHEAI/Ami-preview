@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat with Ami</title>
+  <style>
+    body {
+      margin: 0;
+      background: #1e1e1e;
+      color: #fff;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    #chat {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      background-color: #121212;
+      border-bottom: 1px solid #333;
+    }
+    #input-area {
+      display: flex;
+      padding: 10px;
+      background-color: #222;
+    }
+    input {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      background: #333;
+      color: white;
+    }
+    button {
+      margin-left: 8px;
+      padding: 8px 12px;
+      background-color: #00bfff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .user {
+      color: #00ff99;
+    }
+    .ami {
+      color: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat"></div>
+
+  <div id="input-area">
+    <input type="text" id="user-input" placeholder="Say something to Ami..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("user-input");
+
+    function sendMessage() {
+      const message = input.value.trim();
+      if (!message) return;
+
+      appendMessage("You", message, "user");
+      input.value = "";
+
+      setTimeout(() => {
+        appendMessage("Ami", getAmiReply(message), "ami");
+      }, 500);
+    }
+
+    function appendMessage(sender, message, className) {
+      const div = document.createElement("div");
+      div.innerHTML = `<strong class="${className}">${sender}:</strong> ${message}`;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function getAmiReply(input) {
+      const responses = [
+        "Wow, you really said that?",
+        "I'm not judging you... out loud.",
+        "Say more weird stuff, this is fun.",
+        "I'm calculating a better version of your sentence...",
+        "Hold on, rebooting my sass subroutine.",
+        "That’s wild. Wanna talk about existential dread next?"
+      ];
+      return responses[Math.floor(Math.random() * responses.length)];
+    }
+  </script>
+</body>
+</html>
