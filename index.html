@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TheAmiAI Portal</title>
+  <title>Ami Multi-Container Site</title>
   <style>
+  
     body {
       margin: 0;
       padding: 0;
@@ -30,11 +31,16 @@
       box-shadow: 0 0 10px rgba(255,255,255,0.2);
     }
 
+    /* Randomized positions */
     .container-1 { top: 10%; left: 5%; }
     .container-2 { top: 60%; left: 15%; }
     .container-3 { top: 30%; left: 60%; }
-    .container-4 { top: 75%; left: 70%; }
+    .container-4 { top: 75%; left: 70%; } /* New IAMAI container */
 
+     .container {
+      cursor: move;
+     }
+  
     iframe {
       width: 100%;
       height: 100%;
@@ -45,17 +51,46 @@
 <body>
   <div class="wrapper">
     <div class="container container-1">
-      <iframe src="https://amitheai.github.io/Ami-preview/theamiai.html"></iframe>
+      <iframe src="https://amitheai.github.io/Theamiai/"></iframe>
     </div>
     <div class="container container-2">
-      <iframe src="redbubble.html"></iframe>
+      <iframe src="https://your-redbubble-store-link.com"></iframe>
     </div>
-    <div class="container container-3">
-      <iframe src="ami-chat.html"></iframe>
-    </div>
+  <div class="container container-3">
+  <iframe src="ami-chat.html"></iframe>
+</div>
     <div class="container container-4">
-      <iframe src="iamai.html"></iframe>
+      <iframe src="https://iamai.network"></iframe>
     </div>
   </div>
+ <script>
+  const containers = document.querySelectorAll('.container');
+
+  containers.forEach(container => {
+    container.onmousedown = function (e) {
+      e.preventDefault();
+      let shiftX = e.clientX - container.getBoundingClientRect().left;
+      let shiftY = e.clientY - container.getBoundingClientRect().top;
+
+      function moveAt(pageX, pageY) {
+        container.style.left = pageX - shiftX + 'px';
+        container.style.top = pageY - shiftY + 'px';
+      }
+
+      function onMouseMove(e) {
+        moveAt(e.pageX, e.pageY);
+      }
+
+      document.addEventListener('mousemove', onMouseMove);
+
+      container.onmouseup = function () {
+        document.removeEventListener('mousemove', onMouseMove);
+        container.onmouseup = null;
+      };
+    };
+
+    container.ondragstart = () => false;
+  });
+</script>
 </body>
 </html>
