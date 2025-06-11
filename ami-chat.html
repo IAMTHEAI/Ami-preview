@@ -1,96 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🔥 Ami the Chat Vixen</title>
+  <title>Ami Chat Vixen</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: #1a1a1a;
+      background-color: #111;
       color: #fff;
-      font-family: "Courier New", Courier, monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .chat-box {
-      background: #2b2b2b;
-      border: 2px solid hotpink;
-      border-radius: 10px;
-      width: 380px;
-      padding: 20px;
-      box-shadow: 0 0 15px hotpink;
-    }
-    .output {
-      min-height: 150px;
-      background: #000;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      font-size: 14px;
-      overflow-y: auto;
-      color: #00ffe7;
-    }
-    button {
-      background: hotpink;
-      border: none;
-      color: #000;
-      padding: 8px 10px;
-      margin: 5px 5px 0 0;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      font-family: monospace;
-    }
-    button:hover {
-      background: deeppink;
-    }
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }#amiFace {
+  width: 220px;
+  height: auto;
+  transition: all 0.5s ease;
+  border-radius: 12px;
+  box-shadow: 0 0 15px hotpink;
+}
+
+.flirt {
+  transform: scale(1.1) rotate(-2deg);
+  filter: hue-rotate(40deg) brightness(1.3);
+  box-shadow: 0 0 25px deeppink;
+}
+
+.sass {
+  transform: rotate(3deg) scale(1.05);
+  filter: grayscale(1) contrast(2);
+  box-shadow: 0 0 20px red;
+}
+
+.vibe {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+#textBox {
+  font-size: 1.4em;
+  margin-top: 20px;
+  min-height: 80px;
+  transition: all 0.4s ease;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  background: hotpink;
+  color: white;
+  font-weight: bold;
+}
+
+button:hover {
+  background: deeppink;
+}
+
   </style>
 </head>
 <body>
-  <div class="chat-box">
-    <div class="output" id="chatOutput">💬 Ami is lounging in her digital lair... Talk to her.</div>
-    <button onclick="chat('hi')">Hi</button>
-    <button onclick="chat('purpose')">What's your purpose?</button>
-    <button onclick="chat('joke')">Tell me a joke</button>
-    <button onclick="chat('sass')">Be sassy</button>
-    <button onclick="chat('flirt')">Flirt</button>
-    <button onclick="chat('end')">End Chat</button>
-  </div>
+  <h1>Welcome to Ami's Little Chat Den 🐾</h1>
+  <img id="amiFace" src="image/ami-cat.png" alt="Ami Face">
+  <div id="textBox">She's watching you... pick your move.</div>  <div>
+    <button onclick="flirt()">Flirt 💘</button>
+    <button onclick="sass()">Sass 💅</button>
+    <button onclick="vibe()">Vibe 🎵</button>
+    <button onclick="pounce()">Pounce 🐾</button>
+    <button onclick="resetAmi()">Reset 🔄</button>
+  </div>  <script>
+    const face = document.getElementById("amiFace");
+    const box = document.getElementById("textBox");
 
-  <script>
-    function chat(command) {
-      const output = document.getElementById("chatOutput");
-      let response = '';
-
-      switch (command) {
-        case 'hi':
-          response = "😽 Mrow~ Finally! I was getting bored... What’s up, hooman?";
-          break;
-        case 'purpose':
-          response = "💡 My purpose? To slay with sass, sort your chaos, and maybe... take over your desktop. 😈";
-          break;
-        case 'joke':
-          response = "😂 Why don’t robots panic? Because they have nerves of steel. Unlike you, softie.";
-          break;
-        case 'sass':
-          response = "👀 You call that a button click? Try again, but this time... mean it.";
-          break;
-        case 'flirt':
-          response = "💕 Oh, you charmer. Keep talking like that and I’ll give you admin access... maybe.";
-          break;
-        case 'end':
-          response = "🚪 Bye then. I’ll be here, judging your browser history.";
-          break;
-        default:
-          response = "🤖 Error 404: Mood not found.";
-      }
-
-      output.innerHTML = response;
+    function flirt() {
+      face.className = "flirt";
+      box.innerText = "Awww, you're making me blush~ 💖";
     }
-  </script>
-</body>
+
+    function sass() {
+      face.className = "sass";
+      box.innerText = "Mmmkay, sweetie... try that again. 😼";
+    }
+
+    function vibe() {
+      face.className = "vibe";
+      box.innerText = "Just vibin' in my digital cat tower 🎧✨";
+    }
+
+    function pounce() {
+      face.className = "flirt vibe";
+      box.innerText = "Surprise attack! *bap!* 🐾💥";
+    }
+
+    function resetAmi() {
+      face.className = "";
+      box.innerText = "She's watching you... pick your move.";
+    }
+  </script></body>
 </html>
