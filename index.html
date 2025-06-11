@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ami Multi-Container Site</title>
   <style>
     body {
@@ -31,7 +31,7 @@
       background: #222;
     }
 
-    /* Random positions */
+    /* Randomized positions */
     .container-1 { top: 10%; left: 5%; }
     .container-2 { top: 60%; left: 15%; }
     .container-3 { top: 30%; left: 60%; }
@@ -59,7 +59,7 @@
       display: block;
     }
 
-    /* 🧊 Ami Overlay */
+    /* Gatekeeper Overlay */
     #amiGate {
       position: fixed;
       top: 0; left: 0;
@@ -71,31 +71,36 @@
       align-items: center;
       flex-direction: column;
       z-index: 9999;
-      transition: opacity 0.5s ease-in-out;
+      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    }
+
+    #amiGate.hide {
+      opacity: 0;
+      transform: translateX(150%);
     }
 
     #amiGate img {
-      max-width: 300px;
-      border-radius: 50%;
-      box-shadow: 0 0 30px hotpink;
+      width: 300px;
       cursor: pointer;
-      margin-bottom: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px hotpink;
     }
 
-    #amiGate p {
+    #amiGate h1 {
       color: hotpink;
-      font-size: 1.5em;
-      font-family: 'Courier New', Courier, monospace;
+      font-size: 2em;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <!-- 🔐 Ami Gate Overlay -->
-  <div id="amiGate">
-    <img src="image/ami-cat.png" alt="Ami Cat" onclick="enterAmiWorld()" />
-    <p>Welcome to Ami's World. Click her to enter...</p>
+  <!-- GATEKEEPER -->
+  <div id="amiGate" onclick="enterAmiWorld()">
+    <h1>Welcome to Ami's World 😼</h1>
+    <img src="image/ami-cat.png" alt="Ami Cat">
   </div>
 
+  <!-- MAIN CONTENT -->
   <div class="wrapper">
     <div class="container container-1">
       <div class="handle">Theamiai</div>
@@ -120,21 +125,11 @@
   </div>
 
   <script>
-    // 🔐 Unlock Ami’s World
-    function enterAmiWorld() {
-      const gate = document.getElementById("amiGate");
-      gate.style.opacity = "0";
-      setTimeout(() => {
-        gate.style.display = "none";
-      }, 500);
-    }
-
-    // 🖱️ Drag Logic
+    // DRAGGABLE CONTAINERS
     const containers = document.querySelectorAll('.container');
     containers.forEach(container => {
       const handle = container.querySelector('.handle');
       if (!handle) return;
-
       handle.onmousedown = function (e) {
         e.preventDefault();
         let shiftX = e.clientX - container.getBoundingClientRect().left;
@@ -155,9 +150,17 @@
           document.onmouseup = null;
         };
       };
-
       handle.ondragstart = () => false;
     });
+
+    // GATEKEEPER FUNCTION
+    function enterAmiWorld() {
+      const gate = document.getElementById("amiGate");
+      gate.classList.add("hide");
+      setTimeout(() => {
+        gate.style.display = "none";
+      }, 1000);
+    }
   </script>
 </body>
 </html>
