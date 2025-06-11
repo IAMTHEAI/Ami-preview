@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ami Art Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    .wrapper {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    img {
+      position: absolute;
+      width: 150px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper"></div>  <script>
+    const imageFilenames = [
+      "Fish1.png", "fish.png",
+      "Heart.png", "Heart1.png", "Heart2.png", "Heart3.png",
+      "Key.png", "Key1.png", "Key2.png",
+      "Star.png", "Star1.png", "Star4.png"
+    ];
+
+    const wrapper = document.querySelector('.wrapper');
+
+    imageFilenames.forEach(filename => {
+      const img = document.createElement('img');
+      img.src = `images/${filename}`;
+      img.alt = filename;
+      img.style.left = `${Math.random() * 85}vw`;
+      img.style.top = `${Math.random() * 85}vh`;
+      img.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
+      wrapper.appendChild(img);
+    });
+  </script></body>
+</html>
