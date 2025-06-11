@@ -10,7 +10,32 @@
       background: #111;
       color: #fff;
       font-family: Arial, sans-serif;
-    }.wrapper {
+    }.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+.overlay button {
+  font-size: 1.5em;
+  padding: 12px 24px;
+  background-color: hotpink;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 10px hotpink;
+}
+
+.wrapper {
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -19,22 +44,21 @@
 
 .container {
   position: absolute;
-  width: 450px; /* Increased size */
-  height: 300px; /* Increased size */
+  width: 500px;
+  height: 400px;
   border: 2px solid #fff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(255,255,255,0.2);
   background: #222;
-  display: flex;
-  flex-direction: column;
 }
 
 .container-1 { top: 5%; left: 5%; }
-.container-2 { top: 40%; left: 10%; }
-.container-3 { top: 20%; left: 55%; }
+.container-2 { top: 50%; left: 10%; }
+.container-3 { top: 30%; left: 60%; }
 
 .handle {
+  width: 100%;
   background: #333;
   color: #fff;
   padding: 6px 12px;
@@ -48,58 +72,64 @@
 }
 
 iframe {
-  flex-grow: 1;
   width: 100%;
+  height: calc(100% - 32px);
   border: none;
+  display: block;
 }
 
   </style>
 </head>
 <body>
-  <div class="wrapper">
+  <div class="overlay" id="welcomeOverlay">
+    <img src="image/ami-cat.png" alt="Welcome Ami" width="200" style="margin-bottom: 20px;">
+    <button onclick="enterSite()">Welcome to Amy's World</button>
+  </div>  <div class="wrapper">
     <div class="container container-1">
       <div class="handle">Theamiai</div>
-      <iframe src="https://amitheai.github.io/Theamiai/" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+      <iframe src="https://amitheai.github.io/Theamiai/" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
     </div>
     <div class="container container-2">
-      <div class="handle">Amys Gallery</div>
-      <iframe src="https://amitheai.github.io/AmiGallery/" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+      <div class="handle">Redbubble Store</div>
+      <iframe src="https://your-redbubble-store-link.com" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
     </div>
     <div class="container container-3">
       <div class="handle">Ami Chat</div>
-      <iframe src="ami-chat.html" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+      <iframe src="ami-chat.html" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
     </div>
-  </div>
-  <script>
-    const containers = document.querySelectorAll('.container');containers.forEach(container => {
-  const handle = container.querySelector('.handle');
-  if (!handle) return;
-
-  handle.onmousedown = function (e) {
-    e.preventDefault();
-    let shiftX = e.clientX - container.getBoundingClientRect().left;
-    let shiftY = e.clientY - container.getBoundingClientRect().top;
-
-    function moveAt(pageX, pageY) {
-      container.style.left = pageX - shiftX + 'px';
-      container.style.top = pageY - shiftY + 'px';
+  </div>  <script>
+    function enterSite() {
+      document.getElementById('welcomeOverlay').style.display = 'none';
     }
 
-    function onMouseMove(e) {
-      moveAt(e.pageX, e.pageY);
-    }
+    const containers = document.querySelectorAll('.container');
+    containers.forEach(container => {
+      const handle = container.querySelector('.handle');
+      if (!handle) return;
 
-    document.addEventListener('mousemove', onMouseMove);
+      handle.onmousedown = function (e) {
+        e.preventDefault();
+        let shiftX = e.clientX - container.getBoundingClientRect().left;
+        let shiftY = e.clientY - container.getBoundingClientRect().top;
 
-    document.onmouseup = function () {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.onmouseup = null;
-    };
-  };
+        function moveAt(pageX, pageY) {
+          container.style.left = pageX - shiftX + 'px';
+          container.style.top = pageY - shiftY + 'px';
+        }
 
-  handle.ondragstart = () => false;
-});
+        function onMouseMove(e) {
+          moveAt(e.pageX, e.pageY);
+        }
 
-  </script>
-</body>
+        document.addEventListener('mousemove', onMouseMove);
+
+        document.onmouseup = function () {
+          document.removeEventListener('mousemove', onMouseMove);
+          document.onmouseup = null;
+        };
+      };
+
+      handle.ondragstart = () => false;
+    });
+  </script></body>
 </html>
