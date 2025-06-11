@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ami Multi-Container Site</title>
   <style>
     body {
@@ -31,6 +31,7 @@
       background: #222;
     }
 
+    /* Random positions */
     .container-1 { top: 10%; left: 5%; }
     .container-2 { top: 60%; left: 15%; }
     .container-3 { top: 30%; left: 60%; }
@@ -58,59 +59,43 @@
       display: block;
     }
 
-    #enterAmiWorldBtn {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      padding: 12px 20px;
-      font-size: 1em;
-      font-weight: bold;
-      background: hotpink;
-      color: black;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      z-index: 1000;
-      box-shadow: 0 0 10px magenta;
-    }
-
+    /* 🧊 Ami Overlay */
     #amiGate {
-      display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.95);
-      z-index: 9999;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      color: white;
-      font-family: 'Courier New', Courier, monospace;
+      z-index: 9999;
+      transition: opacity 0.5s ease-in-out;
     }
 
     #amiGate img {
-      width: 250px;
-      margin-top: 100px;
-      cursor: pointer;
+      max-width: 300px;
       border-radius: 50%;
-      box-shadow: 0 0 25px magenta;
-      transition: transform 0.3s ease;
-    }
-
-    #amiGate img:hover {
-      transform: scale(1.1);
+      box-shadow: 0 0 30px hotpink;
+      cursor: pointer;
+      margin-bottom: 20px;
     }
 
     #amiGate p {
-      font-size: 24px;
-      margin-top: 20px;
+      color: hotpink;
+      font-size: 1.5em;
+      font-family: 'Courier New', Courier, monospace;
     }
   </style>
 </head>
 <body>
+  <!-- 🔐 Ami Gate Overlay -->
+  <div id="amiGate">
+    <img src="image/ami-cat.png" alt="Ami Cat" onclick="enterAmiWorld()" />
+    <p>Welcome to Ami's World. Click her to enter...</p>
+  </div>
+
   <div class="wrapper">
     <div class="container container-1">
       <div class="handle">Theamiai</div>
@@ -134,17 +119,18 @@
     </div>
   </div>
 
-  <!-- Welcome Button + Ami Gate -->
-  <button id="enterAmiWorldBtn" onclick="showAmiGate()">Welcome to Amy's World</button>
-
-  <div id="amiGate" onclick="enterAmiWorld()">
-    <img src="image/ami-cat.png" alt="Ami the Gatekeeper" />
-    <p>Click me to enter... if you're worthy.</p>
-  </div>
-
   <script>
-    const containers = document.querySelectorAll('.container');
+    // 🔐 Unlock Ami’s World
+    function enterAmiWorld() {
+      const gate = document.getElementById("amiGate");
+      gate.style.opacity = "0";
+      setTimeout(() => {
+        gate.style.display = "none";
+      }, 500);
+    }
 
+    // 🖱️ Drag Logic
+    const containers = document.querySelectorAll('.container');
     containers.forEach(container => {
       const handle = container.querySelector('.handle');
       if (!handle) return;
@@ -164,7 +150,6 @@
         }
 
         document.addEventListener('mousemove', onMouseMove);
-
         document.onmouseup = function () {
           document.removeEventListener('mousemove', onMouseMove);
           document.onmouseup = null;
@@ -173,14 +158,6 @@
 
       handle.ondragstart = () => false;
     });
-
-    function showAmiGate() {
-      document.getElementById("amiGate").style.display = "flex";
-    }
-
-    function enterAmiWorld() {
-      window.location.href = "index.html";
-    }
   </script>
 </body>
 </html>
