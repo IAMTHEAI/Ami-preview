@@ -31,7 +31,6 @@
       background: #222;
     }
 
-    /* Randomized positions */
     .container-1 { top: 10%; left: 5%; }
     .container-2 { top: 60%; left: 15%; }
     .container-3 { top: 30%; left: 60%; }
@@ -54,9 +53,60 @@
 
     iframe {
       width: 100%;
-      height: calc(100% - 32px); /* Adjust height to leave space for handle */
+      height: calc(100% - 32px);
       border: none;
       display: block;
+    }
+
+    #enterAmiWorldBtn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 12px 20px;
+      font-size: 1em;
+      font-weight: bold;
+      background: hotpink;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 0 10px magenta;
+    }
+
+    #amiGate {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    #amiGate img {
+      width: 250px;
+      margin-top: 100px;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 0 25px magenta;
+      transition: transform 0.3s ease;
+    }
+
+    #amiGate img:hover {
+      transform: scale(1.1);
+    }
+
+    #amiGate p {
+      font-size: 24px;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -83,6 +133,15 @@
       <iframe src="https://amitheai.github.io/AmiGallery/"></iframe>
     </div>
   </div>
+
+  <!-- Welcome Button + Ami Gate -->
+  <button id="enterAmiWorldBtn" onclick="showAmiGate()">Welcome to Amy's World</button>
+
+  <div id="amiGate" onclick="enterAmiWorld()">
+    <img src="image/ami-cat.png" alt="Ami the Gatekeeper" />
+    <p>Click me to enter... if you're worthy.</p>
+  </div>
+
   <script>
     const containers = document.querySelectorAll('.container');
 
@@ -114,76 +173,14 @@
 
       handle.ondragstart = () => false;
     });
+
+    function showAmiGate() {
+      document.getElementById("amiGate").style.display = "flex";
+    }
+
+    function enterAmiWorld() {
+      window.location.href = "ami.html";
+    }
   </script>
-  <!-- Welcome to Ami's World Button -->
-<button id="enterAmiWorldBtn" onclick="showAmiGate()">Welcome to Amy's World</button>
-
-<!-- Ami Gatekeeper Overlay -->
-<div id="amiGate" onclick="enterAmiWorld()">
-  <img src="image/ami-cat.png" alt="Ami the Gatekeeper" />
-  <p>Click me to enter... if you're worthy.</p>
-</div>
-
-<script>
-  function showAmiGate() {
-    document.getElementById("amiGate").style.display = "flex";
-  }
-
-  function enterAmiWorld() {
-    window.location.href = "ami.html"; // redirect to full throne room
-  }
-</script>
-
-<style>
-  #enterAmiWorldBtn {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 12px 20px;
-    font-size: 1em;
-    font-weight: bold;
-    background: hotpink;
-    color: black;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 0 10px magenta;
-  }
-
-  #amiGate {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 9999;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-  }
-
-  #amiGate img {
-    width: 250px;
-    margin-top: 100px;
-    cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 0 0 25px magenta;
-    transition: transform 0.3s ease;
-  }
-
-  #amiGate img:hover {
-    transform: scale(1.1);
-  }
-
-  #amiGate p {
-    font-size: 24px;
-    margin-top: 20px;
-  }
-</style>
 </body>
 </html>
