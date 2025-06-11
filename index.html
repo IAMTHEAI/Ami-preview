@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ami Multi-Container Site</title>
   <style>
-  
     body {
       margin: 0;
       padding: 0;
@@ -29,74 +28,92 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      background: #222;
     }
 
     /* Randomized positions */
     .container-1 { top: 10%; left: 5%; }
     .container-2 { top: 60%; left: 15%; }
     .container-3 { top: 30%; left: 60%; }
-    .container-4 { top: 75%; left: 70%; } /* New IAMAI container */
+    .container-4 { top: 75%; left: 70%; }
+    .container-5 { top: 45%; left: 40%; }
 
-     .container {
+    .handle {
+      width: 100%;
+      background: #333;
+      color: #fff;
+      padding: 6px 12px;
       cursor: move;
-     }
+      font-weight: bold;
+      font-size: 1em;
+      user-select: none;
+      border-bottom: 1px solid #444;
+      box-sizing: border-box;
+      z-index: 10;
+    }
 
-    .container-5 { 
-      top: 45%; left: 40%; }
-  
     iframe {
       width: 100%;
-      height: 100%;
+      height: calc(100% - 32px); /* Adjust height to leave space for handle */
       border: none;
+      display: block;
     }
   </style>
 </head>
 <body>
   <div class="wrapper">
     <div class="container container-1">
+      <div class="handle">Theamiai</div>
       <iframe src="https://amitheai.github.io/Theamiai/"></iframe>
     </div>
     <div class="container container-2">
+      <div class="handle">Redbubble Store</div>
       <iframe src="https://your-redbubble-store-link.com"></iframe>
     </div>
-  <div class="container container-3">
-  <iframe src="ami-chat.html"></iframe>
-</div>
+    <div class="container container-3">
+      <div class="handle">Ami Chat</div>
+      <iframe src="ami-chat.html"></iframe>
+    </div>
     <div class="container container-4">
+      <div class="handle">IAMAI</div>
       <iframe src="https://iamai.network"></iframe>
     </div>
     <div class="container container-5">
-  <iframe src="https://amitheai.github.io/AmiGallery/"></iframe>
+      <div class="handle">Ami Gallery</div>
+      <iframe src="https://amitheai.github.io/AmiGallery/"></iframe>
     </div>
   </div>
- <script>
-  const containers = document.querySelectorAll('.container');
+  <script>
+    const containers = document.querySelectorAll('.container');
 
-  containers.forEach(container => {
-    container.onmousedown = function (e) {
-      e.preventDefault();
-      let shiftX = e.clientX - container.getBoundingClientRect().left;
-      let shiftY = e.clientY - container.getBoundingClientRect().top;
+    containers.forEach(container => {
+      const handle = container.querySelector('.handle');
+      if (!handle) return;
 
-      function moveAt(pageX, pageY) {
-        container.style.left = pageX - shiftX + 'px';
-        container.style.top = pageY - shiftY + 'px';
-      }
+      handle.onmousedown = function (e) {
+        e.preventDefault();
+        let shiftX = e.clientX - container.getBoundingClientRect().left;
+        let shiftY = e.clientY - container.getBoundingClientRect().top;
 
-      function onMouseMove(e) {
-        moveAt(e.pageX, e.pageY);
-      }
+        function moveAt(pageX, pageY) {
+          container.style.left = pageX - shiftX + 'px';
+          container.style.top = pageY - shiftY + 'px';
+        }
 
-      document.addEventListener('mousemove', onMouseMove);
+        function onMouseMove(e) {
+          moveAt(e.pageX, e.pageY);
+        }
 
-      container.onmouseup = function () {
-        document.removeEventListener('mousemove', onMouseMove);
-        container.onmouseup = null;
+        document.addEventListener('mousemove', onMouseMove);
+
+        document.onmouseup = function () {
+          document.removeEventListener('mousemove', onMouseMove);
+          document.onmouseup = null;
+        };
       };
-    };
 
-    container.ondragstart = () => false;
-  });
-</script>
+      handle.ondragstart = () => false;
+    });
+  </script>
 </body>
 </html>
