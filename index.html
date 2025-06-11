@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,156 +10,96 @@
       background: #111;
       color: #fff;
       font-family: Arial, sans-serif;
-    }
+    }.wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 
-    .wrapper {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
+.container {
+  position: absolute;
+  width: 450px; /* Increased size */
+  height: 300px; /* Increased size */
+  border: 2px solid #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  background: #222;
+  display: flex;
+  flex-direction: column;
+}
 
-    .container {
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      border: 2px solid #fff;
-      border-radius: 12px;
-      overflow: /*hidden;*/
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
-      background: #222;
-    }
+.container-1 { top: 5%; left: 5%; }
+.container-2 { top: 40%; left: 10%; }
+.container-3 { top: 20%; left: 55%; }
 
-    /* Randomized positions*/
-      .coontainer-1 { top: 10%; left: 5%; }
-  /*  .container-2 { top: 60%; left: 15%; }*/
-    .container-3 { top: 20%; left: 50%; }
- /*  .container-4 { top: 75%; left: 70%; }*/
-    .container-5 { top: 30%; left: 30%; }
+.handle {
+  background: #333;
+  color: #fff;
+  padding: 6px 12px;
+  cursor: move;
+  font-weight: bold;
+  font-size: 1em;
+  user-select: none;
+  border-bottom: 1px solid #444;
+  box-sizing: border-box;
+  z-index: 10;
+}
 
-    .handle {
-      width: 100%;
-      background: #333;
-      color: #fff;
-      padding: 6px 12px;
-      cursor: move;
-      font-weight: bold;
-      font-size: 1em;
-      user-select: none;
-      border-bottom: 1px solid #444;
-      box-sizing: border-box;
-      z-index: 10;
-    }
+iframe {
+  flex-grow: 1;
+  width: 100%;
+  border: none;
+}
 
-    iframe {
-      width: 100%;
-      height: calc(100% - 32px);
-      border: none;
-      display: block;
-    }
-
-    /* Gatekeeper Overlay */
-    #amiGate {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.95);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 9999;
-      transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-    }
-
-    #amiGate.hide {
-      opacity: 0;
-      transform: translateX(150%);
-    }
-
-    #amiGate img {
-      width: 300px;
-      cursor: pointer;
-      border-radius: 16px;
-      box-shadow: 0 0 20px hotpink;
-    }
-
-    #amiGate h1 {
-      color: hotpink;
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
   </style>
 </head>
 <body>
-  <!-- GATEKEEPER -->
-  <div id="amiGate" onclick="enterAmiWorld()">
-    <h1>Welcome to Ami's World 😼</h1>
-    <img src="images/ami-cat.png" alt="Ami Cat">
-  </div>
-
-  <!-- MAIN CONTENT -->
   <div class="wrapper">
     <div class="container container-1">
       <div class="handle">Theamiai</div>
-      <iframe src="https://amitheai.github.io/Theamiai/"></iframe>
+      <iframe src="https://amitheai.github.io/Theamiai/" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
     </div>
-    <<!--<div class="container container-2">
-      <div class="handle">Redbubble Store</div>
-      <iframe src="https://your-redbubble-store-link.com"></iframe>
-    </div>-->
+    <div class="container container-2">
+      <div class="handle">Amys Gallery</div>
+      <iframe src="https://amitheai.github.io/AmiGallery/" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+    </div>
     <div class="container container-3">
       <div class="handle">Ami Chat</div>
-      <iframe src="ami-chat.html"></iframe>
-    </div>
-   <!-- <div class="container container-4">
-      <div class="handle">IAMAI</div>
-      <iframe src="https://iamai.network"></iframe>
-    </div>-->
-    <div class="container container-5">
-      <div class="handle">Ami Gallery</div>
-      <iframe src="https://amitheai.github.io/AmiGallery/"></iframe>
+      <iframe src="ami-chat.html" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
     </div>
   </div>
-
   <script>
-    // DRAGGABLE CONTAINERS
-    const containers = document.querySelectorAll('.container');
-    containers.forEach(container => {
-      const handle = container.querySelector('.handle');
-      if (!handle) return;
-      handle.onmousedown = function (e) {
-        e.preventDefault();
-        let shiftX = e.clientX - container.getBoundingClientRect().left;
-        let shiftY = e.clientY - container.getBoundingClientRect().top;
+    const containers = document.querySelectorAll('.container');containers.forEach(container => {
+  const handle = container.querySelector('.handle');
+  if (!handle) return;
 
-        function moveAt(pageX, pageY) {
-          container.style.left = pageX - shiftX + 'px';
-          container.style.top = pageY - shiftY + 'px';
-        }
+  handle.onmousedown = function (e) {
+    e.preventDefault();
+    let shiftX = e.clientX - container.getBoundingClientRect().left;
+    let shiftY = e.clientY - container.getBoundingClientRect().top;
 
-        function onMouseMove(e) {
-          moveAt(e.pageX, e.pageY);
-        }
-
-        document.addEventListener('mousemove', onMouseMove);
-        document.onmouseup = function () {
-          document.removeEventListener('mousemove', onMouseMove);
-          document.onmouseup = null;
-        };
-      };
-      handle.ondragstart = () => false;
-    });
-
-    // GATEKEEPER FUNCTION
-    function enterAmiWorld() {
-      const gate = document.getElementById("amiGate");
-      gate.classList.add("hide");
-      setTimeout(() => {
-        gate.style.display = "none";
-      }, 1000);
+    function moveAt(pageX, pageY) {
+      container.style.left = pageX - shiftX + 'px';
+      container.style.top = pageY - shiftY + 'px';
     }
+
+    function onMouseMove(e) {
+      moveAt(e.pageX, e.pageY);
+    }
+
+    document.addEventListener('mousemove', onMouseMove);
+
+    document.onmouseup = function () {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.onmouseup = null;
+    };
+  };
+
+  handle.ondragstart = () => false;
+});
+
   </script>
 </body>
 </html>
