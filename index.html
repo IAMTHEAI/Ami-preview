@@ -60,7 +60,9 @@
   background-color: #111;
   color: white;
 }
- 
+ .container iframe {
+  pointer-events: auto;
+ }
 img {
   max-width: 100%;
   height: auto;
@@ -85,13 +87,17 @@ img {
   </div>
 
   <div class="container-zone">
-    <div class="container"><iframe src="https://amitheai.github.io/Theamiai/"></iframe>
+    <div class="container"><iframe src="https://amitheai.github.io/Theamiai/" 
+                             allow="fullscreen">
+      
+    </iframe>
 </div>
     <div class="container">
     <iframe src="ami-chat.html"></iframe>
     </div>
     <div class="container">
-    <iframe src="https://amitheai.github.io/AmiGallery/"></iframe>
+    <iframe src="https://amitheai.github.io/AmiGallery/" 
+      allow="fullscreen"></iframe>
 </div>
   </div>
 
