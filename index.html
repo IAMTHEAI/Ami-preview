@@ -40,21 +40,38 @@
       gap: 1rem;
       padding: 2rem;
     }
-    
-    .container {
-      width: 200px;
-      height: 150px;
-      background: #111;
-      border: 2px solid #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #0ff;
-    }
+    .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
 
-    .container img {
+.container {
+  max-width: 90vw;
+  width: 100%;
+  margin: 1rem auto;
+  border: 2px solid #0ff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #0ff;
+  background-color: #111;
+  color: white;
+}
+ .container img {
       max-width: 100%;
       height: auto;
       display: block;
     }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+    
   </style>
 </head>
 <body>
