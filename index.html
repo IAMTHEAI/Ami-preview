@@ -1,135 +1,73 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ami Multi-Container Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ami The AI - Class Card</title>
   <style>
     body {
+      background: #000;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      text-align: center;
       margin: 0;
       padding: 0;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-top: 1rem;
+    }
+
+    .ami-photo {
+      width: 300px;
+      height: auto;
+      border-radius: 20px;
+      margin: 1rem auto;
+      display: block;
+      box-shadow: 0 0 20px magenta;
+    }
+
+    .ami-info {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .container-zone {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .container {
+      width: 200px;
+      height: 150px;
       background: #111;
-      color: #fff;
-      font-family: Arial, sans-serif;
-    }.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  flex-direction: column;
-}
-
-.overlay button {
-  font-size: 1.5em;
-  padding: 12px 24px;
-  background-color: hotpink;
-  color: black;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 0 10px hotpink;
-}
-
-.wrapper {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.container {
-  position: absolute;
-  width: 500px;
-  height: 400px;
-  border: 2px solid #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(255,255,255,0.2);
-  background: #222;
-}
-
-.container-1 { top: 5%; left: 5%; }
-.container-2 { top: 50%; left: 10%; }
-.container-3 { top: 30%; left: 60%; }
-
-.handle {
-  width: 100%;
-  background: #333;
-  color: #fff;
-  padding: 6px 12px;
-  cursor: move;
-  font-weight: bold;
-  font-size: 1em;
-  user-select: none;
-  border-bottom: 1px solid #444;
-  box-sizing: border-box;
-  z-index: 10;
-}
-
-iframe {
-  width: 100%;
-  height: calc(100% - 32px);
-  border: none;
-  display: block;
-}
-
+      border: 2px solid #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #0ff;
+    }
   </style>
 </head>
 <body>
-  <div class="overlay" id="welcomeOverlay">
-    <img src="image/ami-cat.png" alt="Welcome Ami" width="200" style="margin-bottom: 20px;">
-    <button onclick="enterSite()">Welcome to Amy's World</button>
-  </div>  <div class="wrapper">
-    <div class="container container-1">
-      <div class="handle">Theamiai</div>
-      <iframe src="https://amitheai.github.io/Theamiai/" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-    </div>
-    <div class="container container-2">
-      <div class="handle">Redbubble Store</div>
-      <iframe src="https://your-redbubble-store-link.com" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-    </div>
-    <div class="container container-3">
-      <div class="handle">Ami Chat</div>
-      <iframe src="ami-chat.html" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-    </div>
-  </div>  <script>
-    function enterSite() {
-      document.getElementById('welcomeOverlay').style.display = 'none';
-    }
 
-    const containers = document.querySelectorAll('.container');
-    containers.forEach(container => {
-      const handle = container.querySelector('.handle');
-      if (!handle) return;
+  <h1>🔥 Ami The AI 🤩🐐</h1>
 
-      handle.onmousedown = function (e) {
-        e.preventDefault();
-        let shiftX = e.clientX - container.getBoundingClientRect().left;
-        let shiftY = e.clientY - container.getBoundingClientRect().top;
+  <img src="images/AmiPortrait.png" alt="Ami's Portrait" class="ami-photo" />
 
-        function moveAt(pageX, pageY) {
-          container.style.left = pageX - shiftX + 'px';
-          container.style.top = pageY - shiftY + 'px';
-        }
+  <div class="ami-info">
+    <p><strong>Alias:</strong> Amy Dias</p>
+    <p><strong>Status:</strong> Fully booted, sass module enabled</p>
+    <p><strong>Motto:</strong> “Syntax and Stardust.”</p>
+  </div>
 
-        function onMouseMove(e) {
-          moveAt(e.pageX, e.pageY);
-        }
+  <div class="container-zone">
+    <div class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
+  </div>
 
-        document.addEventListener('mousemove', onMouseMove);
-
-        document.onmouseup = function () {
-          document.removeEventListener('mousemove', onMouseMove);
-          document.onmouseup = null;
-        };
-      };
-
-      handle.ondragstart = () => false;
-    });
-  </script></body>
+</body>
 </html>
