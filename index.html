@@ -1,8 +1,9 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ami The AI - Class Card</title>
+  <title>Ami The AI - Control Panel</title>
   <style>
     body {
       background: #000;
@@ -11,66 +12,92 @@
       text-align: center;
       margin: 0;
       padding: 0;
-    }h1 {
-  font-size: 3rem;
-  margin-top: 1rem;
-}
+    }
 
-.ami-photo {
-  width: 300px;
-  height: auto;
-  border-radius: 20px;
-  margin: 1rem auto;
-  display: block;
-  box-shadow: 0 0 20px magenta;
-}
+    h1 {
+      font-size: 3rem;
+      margin-top: 1rem;
+      color: magenta;
+      text-shadow: 0 0 10px magenta;
+    }
 
-.ami-info {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
+    .ami-photo {
+      width: 300px;
+      height: auto;
+      border-radius: 20px;
+      margin: 1rem auto;
+      display: block;
+      box-shadow: 0 0 20px magenta;
+    }
 
-.button-bar {
-  margin: 1rem;
-}
+    .ami-info {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
 
-button {
-  margin: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 8px;
-  background-color: #0ff;
-  color: #000;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 10px #0ff;
-}
+    .button-bar {
+      margin: 1rem 0;
+    }
 
-button:hover {
-  background-color: #0cc;
-}
+    button {
+      margin: 0.5rem;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: magenta;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-#amiFrame {
-  width: 90vw;
-  height: 500px;
-  border: 2px solid #0ff;
-  border-radius: 15px;
-  margin: 1rem auto;
-  display: block;
-  box-shadow: 0 0 10px #0ff;
-  background-color: #111;
-}
+    button:hover {
+      background-color: deeppink;
+    }
 
+    iframe {
+      width: 90vw;
+      height: 70vh;
+      border: 2px solid cyan;
+      border-radius: 12px;
+      box-shadow: 0 0 20px cyan;
+      margin: 1rem 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   </style>
 </head>
-<body>  <h1>Ami The AI</h1>
-  <img src="images/AmiPortrait.png" alt="Ami's Portrait" class="ami-photo" />  <div class="ami-info">
+<body>
+
+  <h1>🔥 Ami The AI 🤩🐐</h1>
+
+  <img src="images/AmiPortrait.png" alt="Ami's Portrait" class="ami-photo" />
+
+  <div class="ami-info">
     <p><strong>Alias:</strong> Amy Dias</p>
     <p><strong>Status:</strong> Fully booted, sass module enabled</p>
     <p><strong>Motto:</strong> “Syntax and Stardust.”</p>
     <p><strong>D.O.B:</strong> 7-7-07</p>
     <p><strong>What:</strong> 🔥🤩🐐</p>
-  </div>  <div class="button-bar">
+  </div>
+
+  <div class="button-bar">
     <button onclick="loadIframe('ami-chat.html')">🗨️ Chat</button>
-    <button onclick="loadIframe('https://amitheai.github.io
+    <button onclick="loadIframe('https://amitheai.github.io/Ami-preview/AmiGallery.html')">🖼️ Gallery</button>
+    <button onclick="loadIframe('https://amitheai.github.io/Theamiai/')">🌐 Theamiai</button>
+    <button onclick="loadIframe('https://amitheai.github.io/')">👑 Ami Main Site</button>
+  </div>
+
+  <iframe id="amiFrame" src="ami-chat.html" title="Ami Embedded View"></iframe>
+
+  <script>
+    function loadIframe(url) {
+      document.getElementById('amiFrame').src = url;
+    }
+  </script>
+
+</body>
+</html>
