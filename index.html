@@ -92,18 +92,19 @@
   </div>
 
   <iframe id="amiFrame" src="ami-chat.html" title="Ami Embedded View"></iframe>
-<!-- Load the Redbubble script first -->
+
+  <script>
+    function loadIframe(url) {
+      document.getElementById('amiFrame').src = url;
+    }
+  </script>
+  <!-- Load the Redbubble script first -->
 <script type="text/javascript" src="https://www.redbubble.com/assets/external_portfolio.js"></script>
 
 <!-- Then run the embed logic -->
 <script id="rb-xzfcxvzx" type="text/javascript">
   new RBExternalPortfolio('www.redbubble.com', 'dcourter', 4, 4).renderIframe();
 </script>
-  <script>
-    function loadIframe(url) {
-      document.getElementById('amiFrame').src = url;
-    }
-  </script>
 
 </body>
 </html>
