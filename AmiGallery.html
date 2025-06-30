@@ -23,8 +23,15 @@
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
+       .scrollable-container {
+     width: 300px; /* Example width */
+     height: 200px; /* Example height */
+     overflow: auto; /* Enables both horizontal and vertical scrolling */
+     /* or */
+     /* overflow-y: scroll;  Enables vertical scrolling only */
+       }
+ </head>
   </style>
-</head>
 <body>
   <div class="wrapper"></div>  <script>
     const imageFilenames = [
@@ -45,5 +52,19 @@
       img.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
       wrapper.appendChild(img);
     });
-  </script></body>
+  </script>
+   <div class="scrollable-container">
+       <iframe src="https://amitheai.github.io/Ami-preview/"
+   width="200px" 
+   height="300px"
+        style="border:none; overflow:hidden;" 
+    scrolling="yes" 
+    frameborder="0" 
+    allowfullscreen="no" 
+    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            sandbox="allow-same-origin allow-scripts allow-forms">
+          </iframe> 
+       <!-- Content goes here -->
+   </div>
+</body>
 </html>
