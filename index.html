@@ -63,6 +63,13 @@
  .container iframe {
   pointer-events: auto;
  }
+       .scrollable-container {
+     width: 300px; /* Example width */
+     height: 200px; /* Example height */
+     overflow: auto; /* Enables both horizontal and vertical scrolling */
+     /* or */
+     /* overflow-y: scroll;  Enables vertical scrolling only */
+       }
 img {
   max-width: 100%;
   height: auto;
@@ -95,14 +102,14 @@ img {
     <div class="container">
     <iframe src="ami-chat.html"></iframe>
     </div>
-    <div class="container">
+    <div class="scrollable-container">
     <iframe allow="autoplay; 
 clipboard-write; encrypted-media; picture-in-picture; 
 web-share" allowfullscreen="no" frameborder="0" height="300px" sandbox=" scrolling="yes"
 src="https://amitheai.github.io/AmiGallery" style="border:none; overflow:hidden;" width="200px"></iframe>
 </div>
 
- <div class="container"><a href="AmyGallery.html"><img alt="Dogs" height="20px" src="dogs.gif" width="20px" /> </a> <a href="https://amitheai.github.io/AmiGallery/""> <img alt="Dogs" height="20px" src="dogs.gif" width="20px" /></a>
+ <div class="scrollable-container">
   </div>
   </div>
 </body>
