@@ -46,7 +46,7 @@
   align-items: center;
   padding: 2rem;
   box-sizing: border-box;
-  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .scrollable-container {
@@ -55,12 +55,15 @@
   margin: 1rem auto;
   border: 2px solid #0ff;
   border-radius: 15px;
-  overflow: auto;
+  overflow-y: auto; 
+    /* Vertical scrolling only */
   box-shadow: 0 0 10px #0ff;
   background-color: #111;
   color: white;
 }
-.container { overflow-y: auto; } 
+.container { 
+  overflow-y: auto; 
+} 
     /* Vertical scrolling only */
     
  .container iframe {
