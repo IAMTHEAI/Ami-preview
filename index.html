@@ -55,14 +55,14 @@
   margin: 1rem auto;
   border: 2px solid #0ff;
   border-radius: 15px;
-  overflow: hidden;
+  overflow: auto;
   box-shadow: 0 0 10px #0ff;
   background-color: #111;
   color: white;
 }
-.container {
-    overflow: auto
-    }
+.container { overflow-y: auto; } 
+    /* Vertical scrolling only */
+    
  .container iframe {
   pointer-events: auto;
  }
@@ -104,7 +104,7 @@ img {
     <div class="container">
     <iframe src="ami-chat.html"></iframe>
     </div>
-  <!--  <div class="scrolling-container">
+  <!--<div class="scrolling-container">
     <iframe allow="autoplay; 
 clipboard-write; encrypted-media; picture-in-picture; 
 web-share" allowfullscreen="no" frameborder="0" height="300"
