@@ -67,13 +67,32 @@ button:hover {
 <body>
   <h1>Welcome to Ami's Little Chat Den 🐾</h1>
   <img id="amiFace" src="image/ami-cat.png" alt="Ami Face">
-  <div id="textBox">She's watching you... pick your move.</div>  <div>
+  <div id="textBox">She's watching you... pick your move.</div>  
+  <!-- Ami Chat Area -->
+<div style="max-width:420px;margin:32px auto 0;">
+  <div id="messages" style="background:#222;
+    border-radius:10px;
+    min-height:120px;
+    max-height:260px;
+    overflow-y:auto;
+    padding:14px;
+    margin-bottom:12px;
+    text-align:left;
+    font-size:1.08em;">
+    <!-- Chat messages will appear here -->
+  </div>
+  <form id="chatForm" style="display:flex;gap:8px;">
+    <input type="text" id="userInput" placeholder="Say something..." autocomplete="off" style="flex:1;padding:8px 12px;border-radius:7px;border:none;"/>
+    <button type="submit" style="background:hotpink;color:#fff;font-weight:bold;">Send</button>
+  </form>
+</div> <div>
     <button onclick="flirt()">Flirt 💘</button>
     <button onclick="sass()">Sass 💅</button>
     <button onclick="vibe()">Vibe 🎵</button>
     <button onclick="pounce()">Pounce 🐾</button>
     <button onclick="resetAmi()">Reset 🔄</button>
-  </div>  <script>
+  </div>  
+<script>
     const face = document.getElementById("amiFace");
     const box = document.getElementById("textBox");
 
@@ -101,5 +120,6 @@ button:hover {
       face.className = "";
       box.innerText = "She's watching you... pick your move.";
     }
-  </script></body>
+  </script><script src="ami-chat.js"></script>
+</body>
 </html>
