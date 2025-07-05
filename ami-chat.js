@@ -32,8 +32,12 @@ function addMessage(text, sender) {
 async function getAIResponse(userMessage) {
     // Call your Vercel backend instead of OpenAI directly!
 const endpoint = "https://ami-backend.vercel.app/api/ami-chat"; // <-- Replace with your actual backend URL
+   
+
+    
+    
     const messages = [
-        {role: "system", content: "You are Ami, a helpful, creative, and friendly AI assistant on this website. Answer questions and assist users conversationally."},
+            { role: "system", content: "You are Ami, a friendly and casual AI who uses emojis and simple language" },
         ...Array.from(messagesDiv.children).map(div => {
             const text = div.querySelector('.bubble').textContent;
             return div.classList.contains('user')
