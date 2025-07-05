@@ -1,6 +1,6 @@
 async function getAIResponse(userMessage) {
-    const endpoint = "https://ami-backend.vercel.app/api/ami-chat"; // ✅ keep this as your deployed backend URL
-
+    /*const endpoint = "https://ami-backend.vercel.app/api/ami-chat";*/ // ✅ keep this as your deployed backend URL
+const endpoint = "https://ami-backend.vercel.app/api/ami-chat";
     const messages = [
         { role: "system", content: "You are Ami, a friendly and casual AI who uses emojis and simple language" },
         ...Array.from(messagesDiv.children).map(div => {
