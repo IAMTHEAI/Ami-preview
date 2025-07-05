@@ -1,50 +1,15 @@
-const messagesDiv = document.getElementById('messages');
-const chatForm = document.getElementById('chatForm');
-const userInput = document.getElementById('userInput');
-
-// Initial Ami greeting
-addMessage('Hi! I\'m Ami, your AI assistant. How can I help you today?', 'ami');
-
-chatForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const question = userInput.value.trim();
-    if (!question) return;
-    addMessage(question, 'user');
-    userInput.value = '';
-    addMessage('...', 'ami');
-    const response = await getAIResponse(question);
-    // Replace last '...' with answer
-    messagesDiv.removeChild(messagesDiv.lastChild);
-    addMessage(response, 'ami');
-});
-
-function addMessage(text, sender) {
-    const div = document.createElement('div');
-    div.className = `message ${sender}`;
-    const bubble = document.createElement('div');
-    bubble.className = 'bubble';
-    bubble.textContent = text;
-    div.appendChild(bubble);
-    messagesDiv.appendChild(div);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-}
-
 async function getAIResponse(userMessage) {
-    // Call your Vercel backend instead of OpenAI directly!
-const endpoint = "https://ami-backend.vercel.app/api/ami-chat"; // <-- Replace with your actual backend URL
-   
+    const endpoint = "https://ami-backend.vercel.app/api/ami-chat"; // ✅ keep this as your deployed backend URL
 
-    
-    
     const messages = [
-            { role: "system", content: "You are Ami, a friendly and casual AI who uses emojis and simple language" },
+        { role: "system", content: "You are Ami, a friendly and casual AI who uses emojis and simple language" },
         ...Array.from(messagesDiv.children).map(div => {
             const text = div.querySelector('.bubble').textContent;
             return div.classList.contains('user')
-                ? {role: "user", content: text}
-                : {role: "assistant", content: text};
+                ? { role: "user", content: text }
+                : { role: "assistant", content: text };
         }),
-        {role: "user", content: userMessage}
+        { role: "user", content: userMessage }
     ];
 
     try {
@@ -53,12 +18,18 @@ const endpoint = "https://ami-backend.vercel.app/api/ami-chat"; // <-- Replace w
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ messages: messages.slice(-10) }) // send messages as JSON
+            body: JSON.stringify({ messages: messages.slice(-10) }) // ✅ no change
         });
+
         const data = await res.json();
+
+        // ✅ NEW: Groq may need logging for debugging
+        console.log("Full API response:", data);
+
+        // ✅ SAME line works unless Groq changes the format
         return data.choices?.[0]?.message?.content?.trim() || "Sorry, I couldn't understand that.";
     } catch (err) {
-        console.error(err);
+        console.error("Fetch error:", err);
         return "Sorry, there was a problem reaching my brain!";
     }
 }
