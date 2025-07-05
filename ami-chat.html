@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Ami Chat Vixen</title>
@@ -6,139 +7,182 @@
     body {
       background-color: #111;
       color: #fff;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
       text-align: center;
       padding: 40px;
-    }#amiFace {
-  width: 220px;
-  height: auto;
-  transition: all 0.5s ease;
-  border-radius: 12px;
-  box-shadow: 0 0 15px hotpink;
-}
-
-.flirt {
-  transform: scale(1.1) rotate(-2deg);
-  filter: hue-rotate(40deg) brightness(1.3);
-  box-shadow: 0 0 25px deeppink;
-}
-
-.sass {
-  transform: rotate(3deg) scale(1.05);
-  filter: grayscale(1) contrast(2);
-  box-shadow: 0 0 20px red;
-}
-
-.vibe {
-  animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-#textBox {
-  font-size: 1.4em;
-  margin-top: 20px;
-  min-height: 80px;
-  transition: all 0.4s ease;
-}
-
-button {
-  padding: 10px 20px;
-  margin: 10px;
-  font-size: 1em;
-  cursor: pointer;
-  border-radius: 8px;
-  border: none;
-  background: hotpink;
-  color: white;
-  font-weight: bold;
-}
-
-button:hover {
-  background: deeppink;
-}
-
+    }
+    #amiFace {
+      width: 220px;
+      height: auto;
+      transition: all 0.5s ease;
+      border-radius: 12px;
+      box-shadow: 0 0 15px hotpink;
+    }
+    .flirt {
+      transform: scale(1.1) rotate(-2deg);
+      filter: hue-rotate(40deg) brightness(1.3);
+      box-shadow: 0 0 25px deeppink;
+    }
+    .sass {
+      transform: rotate(3deg) scale(1.05);
+      filter: grayscale(1) contrast(2);
+      box-shadow: 0 0 20px red;
+    }
+    .vibe {
+      animation: pulse 1s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    #textBox {
+      font-size: 1.4em;
+      margin-top: 20px;
+      min-height: 80px;
+      transition: all 0.4s ease;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 8px;
+      border: none;
+      background: hotpink;
+      color: white;
+      font-weight: bold;
+    }
+    button:hover {
+      background: deeppink;
+    }
+    #messages {
+      background:#222;
+      border-radius:10px;
+      min-height:120px;
+      max-height:260px;
+      overflow-y:auto;
+      padding:14px;
+      margin-bottom:12px;
+      text-align:left;
+      font-size:1.08em;
+    }
+    .msg-user {
+      color: #00b3ff;
+      margin-bottom: 0.5em;
+      word-break: break-word;
+    }
+    .msg-ami {
+      color: #90ee90;
+      margin-bottom: 0.5em;
+      word-break: break-word;
+    }
+    #chatForm {
+      display:flex;
+      gap:8px;
+      margin-bottom: 18px;
+    }
+    #userInput {
+      flex:1;
+      padding:8px 12px;
+      border-radius:7px;
+      border:none;
+      font-size: 1em;
+      background: #191919;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
   <h1>Welcome to Ami's Little Chat Den 🐾</h1>
   <img id="amiFace" src="images/ami-cat.png" alt="Ami Face">
-  <!--<img id="amiFace" src="image/ami-cat.png" alt="Ami Face">-->
   <div id="textBox">She's watching you... pick your move.</div>  
   <!-- Ami Chat Area -->
-<div style="max-width:420px;margin:32px auto 0;">
-  <div id="messages" style="background:#222;
-    border-radius:10px;
-    min-height:120px;
-    max-height:260px;
-    overflow-y:auto;
-    padding:14px;
-    margin-bottom:12px;
-    text-align:left;
-    font-size:1.08em;">
-    <!-- Chat messages will appear here -->
+  <div style="max-width:420px;margin:32px auto 0;">
+    <div id="messages">
+      <!-- Chat messages will appear here -->
+    </div>
+    <form id="chatForm" autocomplete="off">
+      <input type="text" id="userInput" placeholder="Say something..." autocomplete="off" required />
+      <button type="submit">Send</button>
+    </form>
   </div>
-  <form id="chatForm" style="display:flex;gap:8px;">
-    <input type="text" id="userInput" placeholder="Say something..." autocomplete="off" style="flex:1;padding:8px 12px;border-radius:7px;border:none;"/>
-    <button type="submit" style="background:hotpink;color:#fff;font-weight:bold;">Send</button>
-  </form>
-</div> <div>
+  <div>
     <button onclick="flirt()">Flirt 💘</button>
     <button onclick="sass()">Sass 💅</button>
     <button onclick="vibe()">Vibe 🎵</button>
     <button onclick="pounce()">Pounce 🐾</button>
     <button onclick="resetAmi()">Reset 🔄</button>
   </div>  
-  <!-- Ami Chat Area -->
-<div style="max-width:420px;margin:32px auto 0;">
-  <div id="messages" style="background:#222;
-    border-radius:10px;
-    min-height:120px;
-    max-height:260px;
-    overflow-y:auto;
-    padding:14px;
-    margin-bottom:12px;
-    text-align:left;
-    font-size:1.08em;">
-    <!-- Chat messages will appear here -->
-  </div>
-  <form id="chatForm" style="display:flex;gap:8px;">
-    <input type="text" id="userInput" placeholder="Say something..." autocomplete="off" style="flex:1;padding:8px 12px;border-radius:7px;border:none;"/>
-    <button type="submit" style="background:hotpink;color:#fff;font-weight:bold;">Send</button>
-  </form>
-</div>
-<script>
+  <script>
     const face = document.getElementById("amiFace");
     const box = document.getElementById("textBox");
-
     function flirt() {
       face.className = "flirt";
       box.innerText = "Awww, you're making me blush~ 💖";
     }
-
     function sass() {
       face.className = "sass";
       box.innerText = "Mmmkay, sweetie... try that again. 😼";
     }
-
     function vibe() {
       face.className = "vibe";
       box.innerText = "Just vibin' in my digital cat tower 🎧✨";
     }
-
     function pounce() {
       face.className = "flirt vibe";
       box.innerText = "Surprise attack! *bap!* 🐾💥";
     }
-
     function resetAmi() {
       face.className = "";
       box.innerText = "She's watching you... pick your move.";
     }
-  </script><script src="ami-chat.js"></script>
+
+    // Ami chat logic
+    const chatForm = document.getElementById('chatForm');
+    const userInput = document.getElementById('userInput');
+    const messagesDiv = document.getElementById('messages');
+    // Persistent chat context
+    let messages = [
+      {role: "system", content: "You are Ami, a helpful AI assistant. Always reply in clear, simple language so everyone can understand you. Avoid jargon and explain things step by step."}
+    ];
+    function renderMessage(role, content) {
+      const cls = role === 'user' ? 'msg-user' : 'msg-ami';
+      const who = role === 'user' ? 'You' : 'Ami';
+      const div = document.createElement('div');
+      div.className = cls;
+      div.innerHTML = `<b>${who}:</b> ${content}`;
+      messagesDiv.appendChild(div);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const userMsg = userInput.value.trim();
+      if (!userMsg) return;
+      renderMessage('user', userMsg);
+      messages.push({role: "user", content: userMsg});
+      userInput.value = '';
+      userInput.disabled = true;
+      try {
+        const res = await fetch('https://ami-backend.vercel.app/api/ami-chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages })
+        });
+        const data = await res.json();
+        if (data.error) {
+          renderMessage('assistant', `Error: ${data.error}`);
+        } else {
+          const amiMsg = data.choices?.[0]?.message?.content || '(No response)';
+          renderMessage('assistant', amiMsg);
+          messages.push({role: "assistant", content: amiMsg});
+        }
+      } catch (err) {
+        renderMessage('assistant', `Error: ${err.message}`);
+      }
+      userInput.disabled = false;
+      userInput.focus();
+    });
+  </script>
 </body>
 </html>
